@@ -4,7 +4,7 @@ call pathogen#infect()
 
 """""""""""""" General """""""""""""""""
 " Change the mapleader from \ to ,
-set mapleader=","
+let mapleader=","
 let g:mapleader=","
 
 set history=1000 
@@ -70,7 +70,7 @@ set backspace=indent,eol,start
 " Always display status line
 set laststatus=2
 
-set undofile
+"set undofile
 
 " Very magic regexps
 nnoremap / /\v
