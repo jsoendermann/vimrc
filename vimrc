@@ -7,11 +7,21 @@ call pathogen#infect()
 let mapleader=","
 let g:mapleader=","
 
+set textwidth=0 
+set wrapmargin=0
+set formatoptions-=t
+"set tw=80
+
 set history=1000 
 set undolevels=1000
 
 " protects against exploits
 set modelines=0
+
+" hide status line
+"set laststatus=0
+"set noru
+"set noshowmode
 
 " Enable filetype plugins
 filetype plugin on
@@ -23,6 +33,9 @@ set autoread
 set encoding=utf-8
 " Minimum number of lines above/below the cursor
 set scrolloff=3
+
+" Disable scrollbars
+set guioptions-=r
 
 " Intendation
 set autoindent
@@ -89,9 +102,18 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 nnoremap ' `
 nnoremap ` '
 
+"hi link EasyMotionTarget ErrorMsg
+"hi link EasyMotionShade  Comment
+"hi! EasyMotionTarget ctermfg=100 guifg=#4CE660 gui=bold
+"hi EasyMotionTarget2First guifg=#D11C24 gui=bold
+"hi EasyMotionTarget2Second guifg=#D11C24 gui=bold
+"hi link EasyMotionTarget2First MatchParen
+"hi link EasyMotionTarget2Second MatchParen
+
+
 " TODO
-set wrap
-set textwidth=79
+"set wrap
+"set textwidth=79
 set formatoptions=qrn1
 set colorcolumn=85
 "set list
@@ -145,15 +167,15 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-nmap s <Plug>(easymotion-s)
+nmap s <Plug>(easymotion-b)
 nmap z <Plug>(easymotion-w)
-nmap Z <Plug>(easymotion-b)
+"nmap Z <Plug>(easymotion-b)
 
 runtime macros/matchit.vim
 
 " Powerline
-set rtp+=~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim
-set guifont=Menlo\ Regular\ for\ Powerline
+"set rtp+=~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim
+"set guifont=Menlo\ Regular\ for\ Powerline
 
 " ================ Turn Off Swap Files ==============
 set noswapfile
@@ -214,5 +236,8 @@ let g:syntastic_javascript_checkers = ['jshint']
 " Open nerdvim automatically when no file was specified
 autocmd vimenter * if !argc() | NERDTree | endif
 
+augroup filetype
+     au! BufRead,BufNewFile *.ll     set filetype=llvm
+augroup END
 
 nmap <silent> <F2> :NERDTreeToggle<CR>
